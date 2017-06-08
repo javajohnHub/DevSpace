@@ -8,7 +8,6 @@
     <ng-container *ngFor="let key of keysArray">
 
     <li role="menuitem"><a class="dropdown-item" href="#" (click)="whisper(people[0].people[key].name)">{{people[0].people[key].name}} <i [ngClass]="['fa', 'fa-' + people[0].people[key].device]"></i> <span style="color: blue;">Whisper</span></a>
-      <a class="dropdown-item" href="#" (click)="requestCall(people[0].people[key].peerId)"> <span style="color: blue;">Request Call</span></a>
     </li>
     </ng-container>
   </ul>

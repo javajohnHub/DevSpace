@@ -8,7 +8,6 @@
     <p><span *ngIf="message.username != 'Admin' && !message.person && !message.to"><span style="color:#ffa500 !important;">{{timeFormat(message.msTime)}}</span> <span [ngStyle]="{'color': message.color}">{{message.username}}:</span> {{message.msg}}</span></p>
     <p><span *ngIf="message.name && !message.person"><span  style="color:#ffa500 !important;">{{timeFormat(message.msTime)}}</span>{{message.name}} <span [ngStyle]="{'color': '#5b82b1'}">whisper:</span> {{message.msg}} <span [ngStyle]="{'color': '#5b82b1'}">to</span> {{message.to}}</span></p>
     <p><span *ngIf="message.person && !message.to"><span  style="color:#ffa500 !important;">{{timeFormat(message.msTime)}}</span>{{message.person.name}} <span [ngStyle]="{'color': '#5b82b1'}">whispers:</span> {{message.msg}}</span></p>
-    <p><span *ngIf="message.peerId"><span  style="color:#ffa500 !important;">{{timeFormat(message.msTime)}}</span>{{message.person.name}} <span [ngStyle]="{'color': '#5b82b1'}">requests a call:</span> {{message.msg}}</span>{{message.peerId}}</p>
   </ng-container>
 
 </div>

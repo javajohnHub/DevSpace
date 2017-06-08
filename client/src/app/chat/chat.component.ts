@@ -15,7 +15,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   messag;
   name: {};
   history;
-  call_request;
   socket: any;
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   constructor(private chatService:ChatService) {
@@ -47,9 +46,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     })
     this.whisper = this.chatService.getWhisper().subscribe(whisper => {
       this.messages.push(whisper);
-    })
-    this.call_request = this.chatService.getCallRequest().subscribe(call_request => {
-      this.messages.push(call_request);
     })
 
     this.scrollToBottom();

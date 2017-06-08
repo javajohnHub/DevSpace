@@ -40,22 +40,7 @@ export class PeopleListComponent implements OnInit {
         console.log(data, result);
       }});
  }
-  requestCall(peerId){
 
-   console.log('peerid', peerId);
-    this.socket.emit('peer id', {peerId: peerId}, function (err, result, data) {
-
-      if(err){
-        // handle error here
-        console.log(err);
-        return;
-      }
-
-      if(data){
-        console.log(data, result);
-      }});
-
-  }
   ngOnDestroy() {
     this.connection.unsubscribe();
   }

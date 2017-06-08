@@ -52,18 +52,6 @@ export class ChatService {
   return whisper;
 }
 
-  getCallRequest() {
-    let call_request = new Observable(observer => {
-      this.socket.on('call_request', (data) => {
-        console.log('getCallRequest', data);
-        observer.next(data);
-      });
-      return () => {
-        this.socket.disconnect();
-      };
-    })
-    return call_request;
-  }
   getName() {
     let name = new Observable(observer => {
       this.socket.on('name', (data) => {
