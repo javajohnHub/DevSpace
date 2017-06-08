@@ -1,0 +1,7 @@
+{
+  "name": "DevSpace",
+  "description": "Node/Express/Peerjs/socket.io",
+  "repository": "https://github.com/javajohnHub/DevSpace",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "static", "socket.io", "peerjs"]
+}
