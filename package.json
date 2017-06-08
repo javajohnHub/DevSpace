@@ -15,7 +15,9 @@
     "validator": "^7.0.0"
   },
   "devDependencies": {},
-  "scripts": {},
+  "scripts": {
+    "start": "node chat_server.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/javajohnHub/DevSpace.git"
