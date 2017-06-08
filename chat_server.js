@@ -122,10 +122,37 @@ io.sockets.on("connection", function (socket) {
     socket.on("send", function({msTime, msg}) {
         //process.exit(1);
         var re = /^[w]:.*:/;
+        var call_re = /^[c]:.*:/;
         var whisper = re.test(msg);
+        var call_request = call_re.test(msg);
+        var callStr = msg.split(":");
         var whisperStr = msg.split(":");
-        console.log('158',msTime,msg, whisper);
+        console.log('158',msTime,msg, whisper, call_request);
         var found = false;
+        if (call_request) {
+            var callTo = sanitize.escape(callStr[1]);
+            var keys = Object.keys(people);
+            if (keys.length != 0) {
+                for (var i = 0; i<keys.length; i++) {
+                    if (people[keys[i]].name === callTo) {
+                        var callId = keys[i];
+                        found = true;
+                        if (socket.id === callId) { //can't whisper to ourselves
+                            socket.emit("update", {username:'Admin',text: "You can't call yourself."});
+                        }
+                        break;
+                    }
+                }
+            }
+            if (found && socket.id !== callId) {
+                var callTo = sanitize.escape(callStr[1]);
+                var peerId = people[socket.id].peerid;
+                socket.emit("call_request", {msTime, name: "You ", to: people[callId].name, msg: callMsg, peerId: peerId});
+                io.sockets.connected[callId].emit("call_request", {msTime, person: people[socket.id].name, msg: callMsg, peerId: peerId });
+            } else {
+                socket.emit("update", {username:'Admin',text: "Can't find " + callTo});
+            }
+        }
         if (whisper) {
             var whisperTo = sanitize.escape(whisperStr[1]);
             var keys = Object.keys(people);
@@ -165,6 +192,9 @@ io.sockets.on("connection", function (socket) {
                 socket.emit("update", {username:'Admin',text: "Please connect to a room."});
             }
         }
+
+
+
     });
 
     socket.on("disconnect", function() {
@@ -180,6 +210,10 @@ io.sockets.on("connection", function (socket) {
     socket.on("mode", function(data) {
         console.log('mode');
         socket.emit('send mode', data);
+    });
+
+    socket.on("peer id", function(data) {
+        people[socket.id].peerid = data.peerid;
     });
     //Room functions
     socket.on("createRoom", function({roomName, peopleLimit}) {

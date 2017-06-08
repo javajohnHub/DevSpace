@@ -40,18 +40,30 @@ export class ChatService {
   }
 
   getWhisper() {
-    let whisper = new Observable(observer => {
-      this.socket.on('whisper', (data) => {
-        console.log('getWhisper', data);
+  let whisper = new Observable(observer => {
+    this.socket.on('whisper', (data) => {
+      console.log('getWhisper', data);
+      observer.next(data);
+    });
+    return () => {
+      this.socket.disconnect();
+    };
+  })
+  return whisper;
+}
+
+  getCallRequest() {
+    let call_request = new Observable(observer => {
+      this.socket.on('call_request', (data) => {
+        console.log('getCallRequest', data);
         observer.next(data);
       });
       return () => {
         this.socket.disconnect();
       };
     })
-    return whisper;
+    return call_request;
   }
-
   getName() {
     let name = new Observable(observer => {
       this.socket.on('name', (data) => {

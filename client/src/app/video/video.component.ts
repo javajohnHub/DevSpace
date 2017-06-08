@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import * as Peer from 'peerjs_fork_firefox40';
-
+import {SocketService} from '../shared/socket.service';
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
@@ -14,9 +14,9 @@ export class VideoComponent implements OnInit {
   peer;
   anotherid;
   mypeerid;
-
+ socket: any;
   constructor() {
-
+    this.socket = SocketService.getInstance();
   }
 
   ngOnInit() {
@@ -30,6 +30,7 @@ export class VideoComponent implements OnInit {
     });
     setTimeout(() => {
       this.mypeerid = this.peer.id;
+      this.socket.emit('peer id', {peerid: this.mypeerid})
     }, 1000);
 
     this.peer.on('connection', function (conn) {
