@@ -41,7 +41,9 @@ export class PeopleListComponent implements OnInit {
       }});
  }
   requestCall(peerId){
-    this.socket.emit('send call request', {peerId: peerId}, function (err, result, data) {
+
+   console.log('peerid', peerId);
+    this.socket.emit('peer id', {peerId: peerId}, function (err, result, data) {
 
       if(err){
         // handle error here
@@ -52,6 +54,7 @@ export class PeopleListComponent implements OnInit {
       if(data){
         console.log(data, result);
       }});
+
   }
   ngOnDestroy() {
     this.connection.unsubscribe();

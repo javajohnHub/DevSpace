@@ -30,7 +30,11 @@ export class VideoComponent implements OnInit {
     });
     setTimeout(() => {
       this.mypeerid = this.peer.id;
-      this.socket.emit('peer id', {peerid: this.mypeerid})
+      if(this.mypeerid != undefined){
+        this.socket.emit('peer id', {peerId: this.mypeerid});
+        console.log(this.mypeerid);
+      }
+
     }, 1000);
 
     this.peer.on('connection', function (conn) {

@@ -146,7 +146,7 @@ io.sockets.on("connection", function (socket) {
             }
             if (found && socket.id !== callId) {
                 var callTo = sanitize.escape(callStr[1]);
-                var peerId = people[socket.id].peerid;
+                var peerId = people[socket.id].peerId;
                 socket.emit("call_request", {msTime, name: "You ", to: people[callId].name, msg: callMsg, peerId: peerId});
                 io.sockets.connected[callId].emit("call_request", {msTime, person: people[socket.id].name, msg: callMsg, peerId: peerId });
             } else {
@@ -213,7 +213,7 @@ io.sockets.on("connection", function (socket) {
     });
 
     socket.on("peer id", function(data) {
-        people[socket.id].peerid = data.peerid;
+        people[socket.id].peerId = data.peerId;
     });
     //Room functions
     socket.on("createRoom", function({roomName, peopleLimit}) {
