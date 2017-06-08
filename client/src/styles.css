@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+#errors{
+  display: none;
+}
+/*#chat{
+  display: none;
+}
+#room{
+  display: none;
+}
+#room-list{
+   display: none;
+ }
+#people-list{
+  display: none;
+}
+#video{
+  display: none;
+}
+#editor{
+  display: none;
+}*/
+body{
+  padding:20px;
+  background-color: #000 !important;
+  height: 100vh;
+  color: #fff !important;
+}
+.container-fluid{
+
+}
+#chat-div{
+  border: 1px solid #fff;
+  height:350px;
+  overflow: scroll;
+  padding: 5px;
+  word-wrap: break-word;
+  background-color: rgba(255,255,255,0.1);
+
+}
+
+.vids{
+  border: 1px solid #fff;
+  min-height: 385px;
+  background-color: rgba(255,255,255,0.1);
+  overflow-y: hidden;
+
+}
+.CodeMirror{
+  height: 408px;
+}
+#theme, #mode{
+  color: #000;
+}

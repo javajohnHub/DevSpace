@@ -1,0 +1,24 @@
+
+<div id="chat-div" #scrollMe>
+  <ng-container *ngIf="history">
+    <p><span *ngFor="let item of history" style="color:#ffa500 !important;">{{item}}<br/></span></p>
+  </ng-container>
+  <ng-container *ngFor="let message of messages" >
+  <p><span *ngIf="message.username == 'Admin'"><span style="color:#5b82b1 !important;">{{message.text}}</span></span></p>
+    <p><span *ngIf="message.username != 'Admin' && !message.person && !message.to"><span style="color:#ffa500 !important;">{{timeFormat(message.msTime)}}</span> <span [ngStyle]="{'color': message.color}">{{message.username}}:</span> {{message.msg}}</span></p>
+    <p><span *ngIf="message.name && !message.person"><span  style="color:#ffa500 !important;">{{timeFormat(message.msTime)}}</span>{{message.name}} <span [ngStyle]="{'color': '#5b82b1'}">whisper:</span> {{message.msg}} <span [ngStyle]="{'color': '#5b82b1'}">to</span> {{message.to}}</span></p>
+    <p><span *ngIf="message.person && !message.to"><span  style="color:#ffa500 !important;">{{timeFormat(message.msTime)}}</span>{{message.person.name}} <span [ngStyle]="{'color': '#5b82b1'}">whispers:</span> {{message.msg}}</span></p>
+  </ng-container>
+
+</div>
+<form id="chatForm">
+  <div class="input-group">
+    <input type="text" class="form-control input-lg" placeholder="Your message" id="msg" name="messag"[(ngModel)]="messag">
+    <span class="input-group-btn">
+        <button class="btn btn-success btn-lg" id="send" type="submit" (click)="sendMessage()">Send</button>
+      </span>
+  </div>
+</form>
+
+
+

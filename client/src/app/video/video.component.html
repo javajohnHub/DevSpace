@@ -1,0 +1,29 @@
+
+<div class="vids">
+  <!-- <!--<button (click)="connect()">Connect</button>
+   <div class="col-md-12" id="">
+     My id - {{mypeerid}}
+     <input type="text" [(ngModel)]="anotherid">
+     <button (click)="videoconnect()">VideoChat</button>
+   </div>-->
+  <h4 text-center>Peer id: {{mypeerid}}</h4>
+<div class="col-md-6">
+<video #myVideo muted="true" autoplay></video>
+</div>
+<div class="col-md-6">
+  <video #theirVideo autoplay></video>
+</div>
+</div>
+
+  <form id="videoForm">
+    <div class="input-group">
+      <input type="text" class="form-control input-lg" placeholder="Peer Id" id="msg" name="anotherid"[(ngModel)]="anotherid">
+      <span class="input-group-btn">
+        <button class="btn btn-success btn-lg" id="send" type="submit" (click)="videoconnect()">Video Chat</button>
+      </span>
+    </div>
+  </form>
+
+
+
+
