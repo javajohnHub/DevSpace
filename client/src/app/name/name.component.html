@@ -2,7 +2,7 @@
 <input [(ngModel)]="name"  /><button (click)="sendName()">Enter</button>
 </div>-->
 <div class="container-fluid">
-<div *ngIf="name != ''">
+<div *ngIf="submitted == false">
   <div class="main col-md-12 col-md-offset-5">
     <div class="alert alert-danger" id="errors"></div>
     <div id="login-screen">
@@ -10,15 +10,17 @@
       <h3 class="lead">Realtime code editing. Chat. Video calls.</h3>
       <form class="form-inline" id="nameForm">
         <div class="form-group">
-          <input [(ngModel)]="name" type="text" class="form-control input-lg" placeholder="Your name" name="name" />
+          <input pattern=".{3,}" minlength="3" required type="text" [(ngModel)]="name" class="form-control input-lg" placeholder="Your name" name="name"  />
         </div>
-        <button (click)="sendName()" type="button" name="join" class="btn btn-primary btn-lg">Enter</button>
+
+        <button type="button"  (click)="sendName()" name="join" class="btn btn-primary btn-lg" [disabled]="name.length < 3">Enter</button>
+
       </form>
     </div>
   </div>
 </div>
 </div>
-<div *ngIf="name == ''">
+<div *ngIf="submitted == true">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
