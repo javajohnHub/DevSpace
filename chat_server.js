@@ -188,6 +188,8 @@ io.sockets.on("connection", function (socket) {
 
     socket.on("peer id", function(data) {
         people[socket.id].peerId = data.peerId;
+        sizePeople = _.size(people);
+        io.sockets.emit("update-people", {people: people, count: sizePeople});
     });
     //Room functions
     socket.on("createRoom", function({roomName, peopleLimit}) {
