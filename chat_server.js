@@ -24,7 +24,7 @@ app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile('index.html', { root: '/dist'});
 });
 server.listen(app.get('port'), function(){
 
