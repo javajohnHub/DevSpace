@@ -69,6 +69,7 @@ declare var CodeMirror: any;
       <option value="markdown">markdown</option>
       <option value="htmlmixed">htmlmixed</option>
       <option value="xml">xml</option>
+      <option value="jsx">jsx</option>
 
     </select>
     <textarea editor id="code" name="code">
