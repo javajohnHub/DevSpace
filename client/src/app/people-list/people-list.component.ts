@@ -40,7 +40,6 @@ export class PeopleListComponent implements OnInit {
         console.log(data, result);
       }});
  }
-
   ngOnDestroy() {
     this.connection.unsubscribe();
   }
