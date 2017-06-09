@@ -123,9 +123,8 @@ io.sockets.on("connection", function (socket) {
         //process.exit(1);
         var re = /^[w]:.*:/;
         var whisper = re.test(msg);
-        var call_request = call_re.test(msg);
         var whisperStr = msg.split(":");
-        console.log('158',msTime,msg, whisper, call_request);
+        console.log('158',msTime,msg, whisper);
         var found = false;
         if (whisper) {
             var whisperTo = sanitize.escape(whisperStr[1]);
