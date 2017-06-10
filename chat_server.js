@@ -94,6 +94,7 @@ io.sockets.on("connection", function (socket) {
                         return exists = true;
                 });
             } while (!exists);
+            console.log('97', exists);
             socket.emit("exists", {msg: "The username already exists, please pick another one.", proposedName: proposedName});
         } else {
             people[socket.id] = {"name" : clean_name, "owns" : ownerRoomID, "inroom": inRoomID, "device": data.device};

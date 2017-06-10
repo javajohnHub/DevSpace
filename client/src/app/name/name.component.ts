@@ -8,15 +8,32 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 })
 export class NameComponent {
   name: string = '';
- submitted: boolean = false;
+  name_exists:boolean = false;
+  proposedName:string;
+  msg: {};
+  submitted: boolean = false;
   constructor(private nameService:NameService) {
 
   }
 
   sendName(){
     this.nameService.sendName(this.name);
+    this.nameExists();
     this.name = '';
     this.submitted = true;
+  }
+  nameExists(){
+    this.nameService.nameExists().subscribe(data => {
+      console.log('exists',data);
+      this.name_exists = true;
+      this.submitted = false;
+      this.msg = data;
+      setTimeout(() => {
+        this.name_exists = false;
+      }, 3000);
+
+
+    });
   }
 
 }

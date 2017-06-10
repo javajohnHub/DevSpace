@@ -20,7 +20,7 @@ export class ChatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       };
     })
     return messages;
@@ -33,7 +33,7 @@ export class ChatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       };
     })
     return chat;
@@ -46,7 +46,7 @@ export class ChatService {
       observer.next(data);
     });
     return () => {
-      this.socket.disconnect();
+      //this.socket.disconnect();
     };
   })
   return whisper;
@@ -59,7 +59,8 @@ export class ChatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
+        //console.log(err);
       };
     })
     return name;
