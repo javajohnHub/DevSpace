@@ -2,12 +2,16 @@
 <input [(ngModel)]="name"  /><button (click)="sendName()">Enter</button>
 </div>-->
 <div class="container-fluid">
+  <div *ngIf="name_exists == true" class="text-center text-warning">
+    {{msg.msg}}
+  </div>
 <div *ngIf="submitted == false || name_exists == true">
   <div class="main col-md-12 col-md-offset-5">
     <div class="alert alert-danger" id="errors"></div>
     <div id="login-screen">
       <h1 class="lead">CodeAddict.me</h1>
       <h3 class="lead">Realtime code editing. Chat. Video calls.</h3>
+
       <form class="form-inline" id="nameForm">
         <div class="form-group">
           <input pattern=".{3,}" minlength="3" required type="text" [(ngModel)]="name" class="form-control input-lg" placeholder="Your name" name="name"  />
@@ -21,9 +25,7 @@
   </div>
 </div>
 </div>
-<div *ngIf="name_exists == true" class="text-center text-warning">
-  {{msg.msg}} {{msg.proposedName}}
-</div>
+
 <div *ngIf="submitted == true && name_exists == false">
   <div class="container-fluid">
     <div class="row">
