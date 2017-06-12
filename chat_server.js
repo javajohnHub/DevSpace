@@ -38,24 +38,24 @@ var chatHistory = {};
 var color;
 
 
-/*function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
+function getRandomColor(ranges) {
+    if (!ranges) {
+        ranges = [
+            [150,256],
+            [0, 190],
+            [0, 190]
+        ];
     }
+    var g = function() {
+        //select random range and remove
+        var range = ranges.splice(Math.floor(Math.random()*ranges.length), 1)[0];
+        //pick a random number from within the range
+        return Math.floor(Math.random() * (range[1] - range[0])) + range[0];
+    }
+    color = "rgb(" + g() + "," + g() + "," + g() +")";
     return color;
-}*/
+};
 
-//generates lighter colors
-function getRandomColor() {
-    var letters = 'ABCDE'.split('');
-    var color = '#';
-    for (var i=0; i<3; i++ ) {
-        color += letters[Math.floor(Math.random() * letters.length)];
-    }
-    return color;
-}
 
 
 io.sockets.on("connection", function (socket) {
