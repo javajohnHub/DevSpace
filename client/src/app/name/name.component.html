@@ -2,7 +2,9 @@
 <input [(ngModel)]="name"  /><button (click)="sendName()">Enter</button>
 </div>-->
 <div class="container-fluid">
-
+  <alert type="warning" *ngIf="name_exists == true" class="text-center">
+    {{msg.msg}}
+  </alert>
 <div *ngIf="submitted == false || name_exists == true">
   <div class="main col-md-12 col-md-offset-5">
     <div class="alert alert-danger" id="errors"></div>
@@ -23,9 +25,7 @@
   </div>
 </div>
 
-  <alert type="warning" *ngIf="name_exists == true" class="text-center">
-    {{msg.msg}}
-  </alert>
+
 </div>
 
 <div *ngIf="submitted == true && name_exists == false">
