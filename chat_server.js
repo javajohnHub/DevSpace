@@ -38,15 +38,24 @@ var chatHistory = {};
 var color;
 
 
-function getRandomColor() {
+/*function getRandomColor() {
     var letters = '0123456789ABCDEF';
     color = '#';
     for (var i = 0; i < 6; i++ ) {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-}
+}*/
 
+//generates lighter colors
+function getRandomColor() {
+    var letters = 'ABCDE'.split('');
+    var color = '#';
+    for (var i=0; i<3; i++ ) {
+        color += letters[Math.floor(Math.random() * letters.length)];
+    }
+    return color;
+}
 
 
 io.sockets.on("connection", function (socket) {
