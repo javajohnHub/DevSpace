@@ -28,6 +28,7 @@ export class NameComponent {
       this.name_exists = true;
       this.submitted = false;
       this.msg = data;
+      this.name = this.msg['proposedName'];
       setTimeout(() => {
         this.name_exists = false;
       }, 3000);
