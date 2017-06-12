@@ -57,7 +57,6 @@ function getRandomColor(ranges) {
 };
 
 
-
 io.sockets.on("connection", function (socket) {
     //socket.emit('refresh', {body: body});
     var color = getRandomColor();
@@ -103,7 +102,7 @@ io.sockets.on("connection", function (socket) {
                         return exists = true;
                 });
             } while (!exists);
-            console.log('97', exists);
+            console.log('129', exists);
             socket.emit("exists", {msg: "The username already exists, please pick another one.", proposedName: proposedName});
         } else {
             people[socket.id] = {"name" : clean_name, "owns" : ownerRoomID, "inroom": inRoomID, "device": data.device};
@@ -201,7 +200,35 @@ io.sockets.on("connection", function (socket) {
             sizePeople = _.size(people);
             io.sockets.emit("update-people", {people: people, count: sizePeople});
         }
+    });
 
+    socket.on("call_request", function(data) {
+        console.log('call_request', data);
+        console.log('name', people[socket.id].name);
+        var found = false;
+        if (data.name) {
+            var keys = Object.keys(people);
+            if (keys.length != 0) {
+                for (var i = 0; i<keys.length; i++) {
+                    if (people[keys[i]].name === data.name) {
+                        var callId = keys[i];
+                        found = true;
+                        console.log('found');
+                        if (socket.id === callId) { //can't whisper to ourselves
+                            socket.emit("update", {username:'Admin',text: "You can't call yourself."});
+                        }
+                        break;
+                    }
+                }
+            }
+            if (found && socket.id !== callId) {
+                socket.emit("request", { msg: "You requested a call from", to: people[callId].name});
+                io.sockets.connected[callId].emit("request", { person: people[socket.id].name, msg:" is requesting a video chat", peerId:people[socket.id].peerId });
+            }
+        }
+        else {
+            socket.emit("update", {username:'Admin',text: "Can't find User" });
+        }
     });
     //Room functions
     socket.on("createRoom", function({roomName, peopleLimit}) {

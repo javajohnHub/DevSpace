@@ -63,6 +63,19 @@ export class VideoComponent implements OnInit {
         console.log('Failed to get stream', err);
       })
     })
+
+    this.socket.on('request', (data)=> {
+      console.log('request', data);
+      if(data.peerId){
+        if (confirm('Would you like to accept a call from ' + data.person)) {
+          this.videoconnect(data.peerId)
+        } else {
+          console.log('canceled');
+        }
+      }
+
+
+    })
   }
 
   connect() {
@@ -72,11 +85,10 @@ export class VideoComponent implements OnInit {
     });
   }
 
-  videoconnect() {
+  videoconnect(fname) {
     let myVideo = this.myVideo.nativeElement;
     let theirVideo = this.theirVideo.nativeElement;
     var localvar = this.peer;
-    var fname = this.anotherid;
 
     //var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 

@@ -28,7 +28,22 @@ export class PeopleListComponent implements OnInit {
 
   }
  whisper(name){
-    this.socket.emit('send name', {name: name}, function (err, result, data) {
+  this.socket.emit('send name', {name: name}, function (err, result, data) {
+
+    if(err){
+      // handle error here
+      console.log(err);
+      return;
+    }
+
+    if(data){
+      console.log(data, result);
+    }});
+}
+  call(peerId, name){
+   var myId = document.getElementById("myId").innerText;
+   console.log(myId, peerId);
+    this.socket.emit('call_request', {caller_id: myId, name: name}, function (err, result, data) {
 
       if(err){
         // handle error here
@@ -39,7 +54,7 @@ export class PeopleListComponent implements OnInit {
       if(data){
         console.log(data, result);
       }});
- }
+  }
   ngOnDestroy() {
     this.connection.unsubscribe();
   }
