@@ -257,7 +257,7 @@ io.sockets.on("connection", function (socket) {
                         socket.room = room.name;
                         socket.join(socket.room);
                         user = people[socket.id];
-                        io.sockets.in(socket.room).emit("update", {username:'Admin',text:  user.name + "has connected to " + room.name});
+                        io.sockets.in(socket.room).emit("update", {username:'Admin',text:  user.name + " has connected to " + room.name});
                         socket.emit("update", {username:'Admin',text: "Welcome to " + room.name + "."});
                         socket.emit("sendRoomID", {id: id});
                         socket.emit('refresh', room.body);
@@ -396,7 +396,7 @@ io.sockets.on("connection", function (socket) {
                 }
             } else {//user in room but does not own room
                 if (action === "disconnect") {
-                    io.sockets.emit("update", {username:'Admin',text: people[s.id].name + "has disconnected from the server."});
+                    io.sockets.emit("update", {username:'Admin',text: people[s.id].name + " has disconnected from the server."});
                     if (_.contains((room.people), s.id)) {
                         var personIndex = room.people.indexOf(s.id);
                         room.people.splice(personIndex, 1);
@@ -422,7 +422,7 @@ io.sockets.on("connection", function (socket) {
         } else {
             //The user isn't in a room, but maybe he just disconnected, handle the scenario:
             if (action === "disconnect") {
-                io.sockets.emit("update", {username:'Admin',text: people[s.id].name + "has disconnected from the server."});
+                io.sockets.emit("update", {username:'Admin',text: people[s.id].name + " has disconnected from the server."});
                 delete people[s.id];
                 sizePeople = _.size(people);
                 io.sockets.emit("update-people", {people: people, count: sizePeople});

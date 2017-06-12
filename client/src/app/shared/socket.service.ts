@@ -5,7 +5,7 @@ export class SocketService  {
   static instance:SocketService = null;
   static isCreating:Boolean = false;
   public socket:any;
-  private url = 'https://devspacecode.herokuapp.com/';
+  private url = 'https://devspacecode.herokuapp.com';
 
   /**
    * constuctor with control handle, that you can not instantiate by new NodoSocket();
