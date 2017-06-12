@@ -14,11 +14,12 @@ import { EditorComponent } from './editor/editor.component';
 import {EditorDirective} from "./editor/editor.directive";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [ClientAppComponent, EditorDirective,ChatComponent, NameComponent, RoomComponent, RoomListComponent, PeopleListComponent, VideoComponent, EditorComponent],
   bootstrap: [ClientAppComponent],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, BsDropdownModule.forRoot(),ModalModule.forRoot()] ,
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, BsDropdownModule.forRoot(),ModalModule.forRoot(), AlertModule.forRoot()] ,
   providers: [NameService, RoomService,],
 })
 
