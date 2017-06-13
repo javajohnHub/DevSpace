@@ -30,10 +30,9 @@
 
 <div *ngIf="submitted == true && name_exists == false">
   <div class="container-fluid">
-    <div class="row">
-        <app-video id="video"></app-video>
-    </div>
-    <div class="row">
+    <app-video id="video"></app-video>
+
+
       <div class="col-md-5">
         <app-room-list id="room-list"></app-room-list>
         <app-people-list id="people-list"></app-people-list>
@@ -41,11 +40,12 @@
         <chat-component id="chat"></chat-component>
       </div>
       <div class="col-md-1"></div>
-      <div class="col-md-6">
-        <app-editor id="editor"></app-editor>
-      </div>
 
 
-  </div>
+
+
+    <div class="col-md-6">
+      <app-editor id="editor"></app-editor>
+    </div>
 </div>
 </div>
