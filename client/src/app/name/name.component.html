@@ -31,18 +31,19 @@
 <div *ngIf="submitted == true && name_exists == false">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3">
+        <app-video id="video"></app-video>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
         <app-room-list id="room-list"></app-room-list>
         <app-people-list id="people-list"></app-people-list>
         <app-room id="room"></app-room>
         <chat-component id="chat"></chat-component>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-7">
         <app-editor id="editor"></app-editor>
       </div>
-      <div class="col-md-4">
-        <app-video id="video"></app-video>
-    </div>
+
 
   </div>
 </div>
