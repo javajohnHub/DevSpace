@@ -39,13 +39,6 @@ body{
 
 }
 
-.vids{
-  border: 1px solid #fff;
-  min-height: 300px;
-  background-color: rgba(255,255,255,0.1);
-  overflow-y: hidden;
-
-}
 .CodeMirror{
   height: 408px;
 }

@@ -1,6 +1,6 @@
 video{
-  padding:0;
-  margin:0;
+  display: block;
+  margin: 0 auto;
   width:240px;
   height: 240px;
   background-color: #000;
