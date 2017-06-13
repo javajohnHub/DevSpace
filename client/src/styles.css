@@ -39,9 +39,12 @@ body{
 
 }
 
+.vids{
+  overflow-y: hidden;
+
+}
 .CodeMirror{
   height: 408px;
-
 }
 #theme, #mode{
   color: #000;
