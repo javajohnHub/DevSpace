@@ -13,7 +13,7 @@
       <div class="modal-body">
         <input class="form-control" placeholder="Room name" type="text" required [(ngModel)]="room" />
         <input class="form-control"  placeholder="People limit" type="number" [(ngModel)]="peopleLimit" value="2" min="2" step="1" required/>
-        <button class="btn btn-success form-control"(click)="createRoom(); smModal.hide();" >Create Room</button>
+        <button class="btn btn-success form-control"(click)="createRoom(); smModal.hide();" [disabled]="room.length < 3 || room.length > 15">Create Room</button>
       </div>
     </div>
   </div>

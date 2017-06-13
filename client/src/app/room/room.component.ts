@@ -9,7 +9,7 @@ import { RoomService }       from './room.service';
 export class RoomComponent implements OnInit, OnDestroy {
   rooms = [];
   connection;
-  room;
+  room: string = '';
   peopleLimit;
   constructor(private roomService:RoomService) { }
 

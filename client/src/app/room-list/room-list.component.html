@@ -8,9 +8,9 @@
       <ng-container *ngFor="let key of keysArray">
 
         <li role="menuitem"><span class="dropdown-item" style="color: #000;">{{rooms[0].rooms[key].name}}
-          <button id="join" (click)="join(rooms[0].rooms[key].id)" class='joinRoomBtn btn btn-default btn-xs' >Join</button>
-          <button id="remove" (click)="remove(rooms[0].rooms[key].id)" class='removeRoomBtn btn btn-default btn-xs'>Remove</button>
-          <button id="leave" (click)="leave(rooms[0].rooms[key].id)" class='leaveRoomBtn btn btn-default btn-xs'>Leave</button></span></li>
+          <button id="join" (click)="join(rooms[0].rooms[key].id)" class='joinRoomBtn btn btn-success btn-xs' >Join</button>
+          <button id="remove" (click)="remove(rooms[0].rooms[key].id)" class='removeRoomBtn btn btn-danger btn-xs'>Remove</button>
+          <button id="leave" (click)="leave(rooms[0].rooms[key].id)" class='leaveRoomBtn btn btn-warning btn-xs'>Leave</button></span></li>
       </ng-container>
     </ul>
 

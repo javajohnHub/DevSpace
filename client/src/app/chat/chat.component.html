@@ -15,7 +15,7 @@
   <div class="input-group">
     <input type="text" class="form-control input-lg" placeholder="Your message" id="msg" name="messag"[(ngModel)]="messag">
     <span class="input-group-btn">
-        <button class="btn btn-success btn-lg" id="send" type="submit" (click)="sendMessage()">Send</button>
+        <button class="btn btn-success btn-lg" id="send" type="submit" (click)="sendMessage()" [disabled]="messag.length < 1 || messag.length > 80">Send</button>
       </span>
   </div>
 </form>

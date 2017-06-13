@@ -12,7 +12,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   chat;
   mess;
   whisper;
-  messag;
+  messag: string = '';
   name: {};
   history;
   socket: any;

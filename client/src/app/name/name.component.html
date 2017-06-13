@@ -17,7 +17,7 @@
           <input pattern=".{3,}" minlength="3" required type="text" [(ngModel)]="name" class="form-control input-lg" placeholder="Your name" name="name"  />
         </div>
 
-        <button type="button"  (click)="sendName()" name="join" class="btn btn-primary btn-lg" [disabled]="name.length < 3">Enter</button>
+        <button type="button"  (click)="sendName()" name="join" class="btn btn-primary btn-lg" [disabled]="name.length < 3 || name.length > 15">Enter</button>
 
       </form>
 

@@ -6,7 +6,7 @@
 
   <ul *dropdownMenu class="dropdown-menu" role="menu">
     <ng-container *ngFor="let key of keysArray">
-    <li role="menuitem"><a href="#" (click)="whisper(people[0].people[key].name)"><i [ngClass]="['fa', 'fa-' + people[0].people[key].device]"></i> {{people[0].people[key].name}} <i [ngClass]="['fa', 'fa-comment']"></i></a><a href="#" (click)="call(people[0].people[key].peerId, people[0].people[key].name)"> <i [ngClass]="['fa', 'fa-phone']"></i></a>
+    <li role="menuitem" class="dropdown-item"> <i [ngClass]="['fa', 'fa-' + people[0].people[key].device]"></i> {{people[0].people[key].name}} <a href="#" (click)="whisper(people[0].people[key].name)"> <i [ngClass]="['fa', 'fa-comment']"></i></a><a href="#" (click)="call(people[0].people[key].peerId, people[0].people[key].name)"> <i [ngClass]="['fa', 'fa-phone']"></i></a>
     </li>
     </ng-container>
   </ul>
