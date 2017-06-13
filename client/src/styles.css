@@ -41,8 +41,9 @@ body{
 
 .CodeMirror{
   height: 408px;
+  width: 100%;
   position: absolute;
-  top: 0;
+  top: -150px;
   right: 0;
 }
 #theme, #mode{
