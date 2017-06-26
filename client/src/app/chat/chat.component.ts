@@ -16,8 +16,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   name: {};
   history;
   socket: any;
-  cursors: {};
-  pressed: boolean = false;
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   constructor(private chatService:ChatService) {
     this.socket = SocketService.getInstance();
@@ -32,78 +30,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     });
 
-    this.socket.on('mouse', function (data) {
-      var id = data.id;
-      var x = data.x;
-      var y = data.y;
-      var pressed = data.pressed;
-
-      var cursor = this.cursors[id];
-      if (!cursor) {
-        cursor = this.cursors[id] = document.createElement('i');
-        document.body.appendChild(cursor);
-      }
-      if (pressed) {
-        cursor.className = 'cursor fa fa-hand-rock-o';
-      } else {
-        cursor.className = 'cursor fa fa-hand-pointer-o';
-      }
-      cursor.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-    });
-
-    window.addEventListener('mousedown', this.onMousedown);
-    window.addEventListener('touchstart', this.onMousedown);
-  }
-
-  onMousedown (e) {
-  e.preventDefault();
-
-  if (e.type === 'touchstart') {
-    this.pressed = false;
-
-    this.sendMouse({x: e.touches[0].pageX, y: e.touches[0].pageY});
-
-    window.addEventListener('touchmove', this.onMousemove);
-    window.addEventListener('touchend', this.onMouseup);
-  } else {
-    this.pressed = true;
-
-    this.sendMouse({x: e.pageX, y: e.pageY});
-
-    window.addEventListener('mousemove', this.onMousemove);
-    window.addEventListener('mouseup', this.onMouseup);
-  }
-}
-
-  onMousemove (e) {
-    if (e.type === 'touchmove') {
-      this.sendMouse({x: e.touches[0].pageX, y: e.touches[0].pageY});
-    } else {
-      this.sendMouse({x: e.pageX, y: e.pageY});
-    }
-  }
-
-  onMouseup (e) {
-    this.pressed = false;
-    if (e.type === 'touchend') {
-      window.removeEventListener('touchmove', this.onMousemove);
-      window.removeEventListener('touchend', this.onMouseup);
-
-      this.sendMouse({x: e.touches[0].pageX, y: e.touches[0].pageY});
-    } else {
-      window.removeEventListener('touchmove', this.onMousemove);
-      window.removeEventListener('touchend', this.onMouseup);
-
-      this.sendMouse({x: e.pageX, y: e.pageY});
-    }
-  }
-
-  sendMouse (data) {
-    this.socket.emit('mouse', {
-      x: data.x - window.innerWidth / 2 | 0,
-      y: data.y - window.innerHeight / 2 | 0,
-      pressed: this.pressed
-    });
   }
 
   sendMessage(){
