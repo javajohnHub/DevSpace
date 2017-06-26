@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy, AfterViewChecked, ElementRef, ViewChild} from '@angular/core';
 import { ChatService }       from './chat.service';
 import {SocketService} from '../shared/socket.service';
-
+import {forEach} from "@angular/router/src/utils/collection";
 @Component({
   selector: 'chat-component',
   templateUrl: './chat.component.html',
@@ -29,25 +29,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       console.log('this.history',this.history);
 
     });
-    this.socket.on('draw_cursor', function (data) {
-      var el = this.getCursorElement(data.id);
-      el.style.x = data.line[0].x;
-      el.style.y = data.line[0].y;
-    })
+
   }
 
-  getCursorElement (id) {
-    var elementId = 'cursor-' + id;
-    var element = document.getElementById(elementId);
-    if(element == null) {
-      element = document.createElement('div');
-      element.id = elementId;
-      element.className = 'cursor';
-      // Perhaps you want to attach these elements another parent than document
-      document.appendChild(element);
-    }
-    return element;
-  }
   sendMessage(){
     this.chatService.sendMessage(this.messag);
     this.messag = '';

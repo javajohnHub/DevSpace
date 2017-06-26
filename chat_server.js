@@ -81,9 +81,7 @@ io.sockets.on("connection", function (socket) {
     });
 
 
-    socket.on('draw_cursor', function (data) {
-        io.emit('draw_cursor', { line: data.line, id: socket.id });
-    });
+
 
     socket.on("joinserver", function(data) {
         console.log('111',data.device);
