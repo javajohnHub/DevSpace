@@ -81,7 +81,15 @@ io.sockets.on("connection", function (socket) {
     });
 
 
-
+    socket.on('mouse', function (data) {
+        data.id = id;
+        socket.broadcast.to(socket.room).emit('mouse', {
+            x: data.x,
+            y: data.y,
+            pressed: data.pressed,
+            id: id
+        });
+    });
 
     socket.on("joinserver", function(data) {
         console.log('111',data.device);
