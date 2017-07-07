@@ -474,6 +474,6 @@ io.sockets.on("connection", function (socket) {
 
     socket.on('mouse movement', function (mouse) {
         positions[socket.number] = mouse.pos;
-        io.sockets.in(socket.room).broadcast.emit('mouse update', { id: socket.number, pos: mouse.pos });
+        io.sockets.in(socket.room).broadcast('mouse update', { id: socket.number, pos: mouse.pos });
     });
 });
