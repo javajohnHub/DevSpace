@@ -36,7 +36,8 @@ var rooms = {};
 var sockets = [];
 var chatHistory = {};
 var color;
-
+var positions = {};
+var total = 0;
 
 function getRandomColor(ranges) {
     if (!ranges) {
@@ -467,4 +468,12 @@ io.sockets.on("connection", function (socket) {
             }
         }
     }
+
+    socket.number = ++total;
+    socket.emit(positions);
+
+    socket.on('mouse movement', function (mouse) {
+        positions[socket.number] = mouse.pos;
+        io.sockets.in(socket.room).emit('mouse update', { id: socket.number, pos: mouse.pos });
+    });
 });
