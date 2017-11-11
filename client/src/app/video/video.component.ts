@@ -25,7 +25,7 @@ export class VideoComponent implements OnInit {
     let theirVideo = this.theirVideo.nativeElement;
     this.peer = new Peer({
       host: 'peerjs-rapbattle.herokuapp.com',
-      path: '/',
+      path: '',
       port: 80,
       secure: true,
       debug: 3
