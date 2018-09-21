@@ -1,11 +1,10 @@
-import * as io from 'socket.io-client';
+import * as io from "socket.io-client";
 
-export class SocketService  {
-
-  static instance:SocketService = null;
-  static isCreating:Boolean = false;
-  public socket:any;
-  private url = 'https://devspacecode.herokuapp.com';//'https://codeaddict.me'; //'https://devspacecode.herokuapp.com'; //change this to your sites url
+export class SocketService {
+  static instance: SocketService = null;
+  static isCreating: Boolean = false;
+  public socket: any;
+  private url = "Https://http://104.248.185.130/";
 
   /**
    * constuctor with control handle, that you can not instantiate by new NodoSocket();
@@ -14,14 +13,15 @@ export class SocketService  {
    */
   constructor() {
     if (!SocketService.isCreating) {
-      throw new Error("This is a real singleton. Get an instance via var socket = SocketService.getInsance(); !");
+      throw new Error(
+        "This is a real singleton. Get an instance via var socket = SocketService.getInsance(); !"
+      );
     }
 
     console.info("creating socket object");
 
     console.info("establishing connection to server...");
     this.socket = io.connect(this.url);
-
   }
 
   /**
@@ -29,8 +29,8 @@ export class SocketService  {
    * @param eventName
    * @param callback
    */
-  public on(eventName, callback):void {
-    this.socket.on(eventName, function () {
+  public on(eventName, callback): void {
+    this.socket.on(eventName, function() {
       var args = arguments;
       if (typeof callback == "function") {
         callback.apply(this.socket, args);
@@ -44,37 +44,29 @@ export class SocketService  {
    * @param data
    * @param callback
    */
-  public emit(eventName, data, callback):void {
-    this.socket.emit(eventName, data, function () {
+  public emit(eventName, data, callback): void {
+    this.socket.emit(eventName, data, function() {
       var args = arguments;
       if (typeof callback == "function") {
         callback.apply(this.socket, args);
-
       }
     });
   }
-
-
-
 
   /**
    * get instance wrapper
    * @returns {SocketService}
    */
-  public static getInstance():SocketService {
-
+  public static getInstance(): SocketService {
     if (SocketService.instance === null) {
       SocketService.isCreating = true;
       SocketService.instance = new SocketService();
       SocketService.isCreating = false;
     }
 
-    console.log("SocketService.instance",SocketService.instance);
+    console.log("SocketService.instance", SocketService.instance);
     return SocketService.instance;
-
   }
-
-
 }
 
 /**
@@ -119,5 +111,3 @@ export class SocketService  {
     });
 
  */
-
-
