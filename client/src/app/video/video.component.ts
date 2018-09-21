@@ -25,7 +25,9 @@ export class VideoComponent implements OnInit {
     let myVideo = this.myVideo.nativeElement;
     let theirVideo = this.theirVideo.nativeElement;
     this.peer = new Peer({
-      host: "http://104.248.185.130:9000/myapp",
+      host: "104.248.185.130",
+      port: "9000",
+      path: "/myapp",
       secure: true,
       debug: 3
     });
