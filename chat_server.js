@@ -13,7 +13,10 @@ var port = process.env.PORT || 80;
 app.set("port", port);
 // app.set('host', '127.0.0.1');
 // app.set('ipaddr', "codeaddict.me");
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(express.static(__dirname + "/dist"));
 app.use("/components", express.static(__dirname + "/components"));
