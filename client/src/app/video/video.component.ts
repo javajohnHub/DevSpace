@@ -27,7 +27,6 @@ export class VideoComponent implements OnInit {
     this.peer = new Peer({
       host: "104.248.185.130",
       port: "9000",
-      path: "/myapp",
       secure: true,
       debug: 3
     });
