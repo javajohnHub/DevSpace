@@ -8,7 +8,7 @@ var express = require("express"),
 var sanitize = require("validator");
 var methodOverride = require("method-override");
 var bodyParser = require("body-parser");
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 80;
 
 app.set("port", port);
 // app.set('host', '127.0.0.1');
@@ -185,15 +185,13 @@ io.sockets.on("connection", function(socket) {
     } else {
       //console.log('loggit', io.sockets.adapter.rooms[socket.room], socket.id);
       if (io.sockets.adapter.rooms[socket.room] != undefined) {
-        io.sockets
-          .in(socket.room)
-          .emit("chat", {
-            msTime: msTime,
-            people: people[socket.id],
-            msg: sanitize.escape(msg),
-            color: color,
-            username: people[socket.id].name
-          });
+        io.sockets.in(socket.room).emit("chat", {
+          msTime: msTime,
+          people: people[socket.id],
+          msg: sanitize.escape(msg),
+          color: color,
+          username: people[socket.id].name
+        });
         socket.emit("isTyping", false);
         if (_.size(chatHistory[socket.room]) > 10) {
           chatHistory[socket.room].splice(0, 1);
@@ -363,12 +361,10 @@ io.sockets.on("connection", function(socket) {
             socket.room = room.name;
             socket.join(socket.room);
             user = people[socket.id];
-            io.sockets
-              .in(socket.room)
-              .emit("update", {
-                username: "Admin",
-                text: user.name + " has connected to " + room.name
-              });
+            io.sockets.in(socket.room).emit("update", {
+              username: "Admin",
+              text: user.name + " has connected to " + room.name
+            });
             socket.emit("update", {
               username: "Admin",
               text: "Welcome to " + room.name + "."
@@ -444,15 +440,13 @@ io.sockets.on("connection", function(socket) {
       if (s.id === room.owner) {
         //user in room and owns room
         if (action === "disconnect") {
-          io.sockets
-            .in(s.room)
-            .emit("update", {
-              username: "Admin",
-              text:
-                "The owner (" +
-                people[s.id].name +
-                ") has left the server. The room is removed and you have been disconnected from it as well."
-            });
+          io.sockets.in(s.room).emit("update", {
+            username: "Admin",
+            text:
+              "The owner (" +
+              people[s.id].name +
+              ") has left the server. The room is removed and you have been disconnected from it as well."
+          });
           var socketids = [];
           for (var i = 0; i < sockets.length; i++) {
             socketids.push(sockets[i].id);
@@ -481,15 +475,13 @@ io.sockets.on("connection", function(socket) {
           sockets = _.without(sockets, o);
         } else if (action === "removeRoom") {
           //room owner removes room
-          io.sockets
-            .in(s.room)
-            .emit("update", {
-              username: "Admin",
-              text:
-                "The owner (" +
-                people[s.id].name +
-                ") has removed the room. The room is removed and you have been disconnected from it as well."
-            });
+          io.sockets.in(s.room).emit("update", {
+            username: "Admin",
+            text:
+              "The owner (" +
+              people[s.id].name +
+              ") has removed the room. The room is removed and you have been disconnected from it as well."
+          });
           var socketids = [];
           for (var i = 0; i < sockets.length; i++) {
             socketids.push(sockets[i].id);
@@ -511,15 +503,13 @@ io.sockets.on("connection", function(socket) {
           io.sockets.emit("roomList", { rooms: rooms, count: sizeRooms });
         } else if (action === "leaveRoom") {
           //room owner leaves room
-          io.sockets
-            .in(s.room)
-            .emit("update", {
-              username: "Admin",
-              text:
-                "The owner (" +
-                people[s.id].name +
-                ") has left the room. The room is removed and you have been disconnected from it as well."
-            });
+          io.sockets.in(s.room).emit("update", {
+            username: "Admin",
+            text:
+              "The owner (" +
+              people[s.id].name +
+              ") has left the room. The room is removed and you have been disconnected from it as well."
+          });
           var socketids = [];
           for (var i = 0; i < sockets.length; i++) {
             socketids.push(sockets[i].id);
