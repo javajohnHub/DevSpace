@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { RoomService }       from '../room/room.service';
-import {SocketService} from '../shared/socket.service';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit } from "@angular/core";
+import { RoomService } from "../room/room.service";
+import { SocketService } from "../shared/socket.service";
+import { Observable } from "rxjs";
 @Component({
-  selector: 'app-room-list',
-  templateUrl: './room-list.component.html',
-  styleUrls: ['./room-list.component.css'],
+  selector: "app-room-list",
+  templateUrl: "./room-list.component.html",
+  styleUrls: ["./room-list.component.css"],
   providers: [RoomService, SocketService]
 })
 export class RoomListComponent implements OnInit {
   rooms = [];
   connection;
   room;
-  keysArray =[];
+  keysArray = [];
   socket: any;
 
-  constructor(private roomService:RoomService) { }
+  constructor(private roomService: RoomService) {}
 
   ngOnInit() {
     this.socket = SocketService.getInstance();
@@ -24,27 +24,20 @@ export class RoomListComponent implements OnInit {
       this.rooms.push(room);
       this.keysArray = Object.keys(this.rooms[0].rooms);
 
-
-      console.log('rooms', this.rooms);
+      console.log("rooms", this.rooms);
     });
-
-
-
   }
 
-  join(id){
+  join(id) {
     this.socket.emit("joinRoom", id);
   }
-  remove(id){
+  remove(id) {
     this.socket.emit("removeRoom", id);
   }
-  leave(id){
+  leave(id) {
     this.socket.emit("leaveRoom", id);
   }
   ngOnDestroy() {
     this.connection.unsubscribe();
   }
-
-
-
 }
