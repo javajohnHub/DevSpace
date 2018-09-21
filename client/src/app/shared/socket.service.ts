@@ -4,7 +4,7 @@ export class SocketService {
   static instance: SocketService = null;
   static isCreating: Boolean = false;
   public socket: any;
-  private url = "Https://http://104.248.185.130/";
+  private url = "http://104.248.185.130/";
 
   /**
    * constuctor with control handle, that you can not instantiate by new NodoSocket();
